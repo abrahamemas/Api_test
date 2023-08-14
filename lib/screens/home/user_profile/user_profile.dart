@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class user_profile extends StatefulWidget {
   const user_profile({super.key});
@@ -12,29 +11,17 @@ class user_profile extends StatefulWidget {
 
 class _user_profileState extends State<user_profile> {
   File? image;
+  
 
- Future<void> pickImage() async {
-  try {
-    final pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
 
-    if (pickedImage == null) {
-      print('No image picked');
-      return;
-    }
 
-    final imageTemporary = File(pickedImage.path);
-    setState(() {
-      image = imageTemporary;
-    });
-  } catch (e) {
-    print('Failed to pick image: $e');
-  }
-}
+
+
 
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
-      onTap: pickImage,
+      
       child: Center(
         child: Container(
          width: 165,

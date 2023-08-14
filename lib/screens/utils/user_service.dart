@@ -35,37 +35,16 @@ class User {
 }
 
 class UserService {
-  Future<List<User>> getUsers() async {
+  Future<int> getUsers() async {
     final response =
         await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      final List<User> userList = [];
-
-      for (var userJson in data) {
-        userList.add(User.fromJson(userJson));
-      }
-
-      return userList;
+      return data.length; 
     } else {
       throw Exception('HTTP Failed');
     }
   }
-
-  Future<User> addUser(User newUser) async {
-    final response = await http.post(
-      Uri.parse('https://jsonplaceholder.typicode.com/users'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(newUser.toJson()),
-    );
-
-    if (response.statusCode == 201) {
-      return User.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to add user');
-    }
-  }
 }
-

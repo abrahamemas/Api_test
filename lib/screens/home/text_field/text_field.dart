@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../utils/user_service.dart';
-import '../home_screen/new_screen/new_screen.dart';
-
 
 
 class text_field extends StatefulWidget {
@@ -15,10 +12,7 @@ class text_field extends StatefulWidget {
 
 class _text_fieldState extends State<text_field> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -28,7 +22,7 @@ class _text_fieldState extends State<text_field> {
             Container(
               width: 300,
               child: TextField(
-                controller:  _emailController,
+                
                 decoration: InputDecoration(
                   labelText: 'Email',
                   labelStyle: GoogleFonts.nunito(
@@ -45,7 +39,7 @@ class _text_fieldState extends State<text_field> {
                 Container(
                   width: 300,
                   child: TextField(
-                   controller: _nameController,
+                  
                    
                   decoration: InputDecoration(
                   labelText: 'Name',
@@ -64,7 +58,7 @@ class _text_fieldState extends State<text_field> {
                   width: 300,
                   child: TextField(
                     
-                controller: _userNameController,
+                
                             decoration: InputDecoration(
                   labelText: 'Username',
                   labelStyle: GoogleFonts.nunito(
@@ -81,7 +75,7 @@ class _text_fieldState extends State<text_field> {
                 Container(
                   width: 300,
                   child: TextField(
-                  controller: _phoneController,
+                  
                   decoration: InputDecoration(
                   labelText: 'Phone',
                   labelStyle: GoogleFonts.nunito(
@@ -96,25 +90,10 @@ class _text_fieldState extends State<text_field> {
                 ),
                SizedBox(height: 50,),
                 Container(
-      child:  Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            
-            User newUser = User(
-              email: _emailController.text,
-              name: _nameController.text,
-              user_name: _userNameController.text,
-              phone: _phoneController.text,
-            );
-
-            // Add the new user
-            await UserService().addUser(newUser);
-
-            // Navigate to the new screen with the updated user list
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => new_screen(user: newUser)),
-            );
+         child:  Center(
+         child: ElevatedButton(
+            onPressed: () async { 
+    
           },
           style: ElevatedButton.styleFrom(
             primary: Colors.black,
